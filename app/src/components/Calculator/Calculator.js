@@ -20,12 +20,15 @@ class Caculator extends Component
     }
 
     setDisplay(num){
-        if(this.state.resetDisplay===true){
-           console.log('hi, i am here');
+        if(this.state.resetDisplay===true||this.state.display==='0'){
+           this.setState({display: num, resetDisplay:false})
         }
-    let display = this.state.display==='0' ? num : this.state.display+num;        
+        else
+        {
+    let display = this.state.display+num;        
     this.setState({display: (this.state.display.length<13)? display:this.state.display})
     }
+}
 
     setOperator(operator){
         if(this.state.operator===''){
@@ -60,7 +63,8 @@ class Caculator extends Component
         this.setState({
         display: "0",
         operator: '',
-        temp: 0
+        temp: 0,
+        resetDisplay: false
     })
     }
     render()
